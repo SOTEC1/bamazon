@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 
 db.connect(function(err){
   if (err) throw err;
-  console.log("Hello World")
+  console.log("Welcome to Bamazon!")
   
   enter();
 });
@@ -23,7 +23,7 @@ function enter() {
     {
       name: "enter",
       type: "list",
-      message: "Would you like to enter The Bamazon store front?",
+      message: "Would you like to enter The Bamazon store?",
       choices: ["Enter", "Exit"]
     }
   ]).then(({ enter }) => {
@@ -46,6 +46,7 @@ function start() {
       type: "list",
       message: "Which item would you like to purchase?",
       choices: dbInventory.map(products => products.product_name)
+
     },
     {
       name: "purchase",
@@ -61,7 +62,7 @@ function start() {
 
     if (purchase > itemPicked.stock_quantity) {
       console.log("\n-----------------\n")
-      console.log("\nNot Enough Stock For This Purchase!\n");
+      console.log("\nNot Enough In Stock For This Purchase!\n");
       console.log("\n------------------\n")
       return enter();
     };
